@@ -35,7 +35,7 @@ Define your layout template in the `crispy_forms.helper.FormHelper` object:
 
 .. code-block:: python
     from crispy_forms.helper import FormHelper
-    from crispy_forms.layout import Div, Field, Layout
+    from crispy_forms.layout import Field, Layout
 
     class BookForm(forms.ModelForm):
         def __init__(self, *args, **kwargs):
@@ -43,22 +43,17 @@ Define your layout template in the `crispy_forms.helper.FormHelper` object:
             self.helper = FormHelper()
             self.helper.template_pack = "bootstrap3"
             self.helper.layout = Layout(
-                Div(
-                  Field('publication_status', template="crispy_templates/layouts/radioselect.html"),
-                  css_class="control-group", id="div_id_publication_status"
-                ),
+                Field('publication_status', template="crispy_templates/layouts/radio_btngroup_field.html"),
             )
 
 Add the javascript by running `python manage.py collectstatic` and then including it in your template:
 
 .. code-block:: python
-    ...
-    {% static 'js/crispy_templates.js' %}
+
+    {% static 'crispy_templates/js/crispy_templates.js' %}
 
 Preferably add it to the footer of your page so as to not delay the page load.
-
-Note**
-Currently only supports the `bootstrap3` template pack that comes with `crispy_forms`.
+  **Note** - Currently only supports the `bootstrap3` template pack that comes with `crispy_forms`.
 
 Credits
 -------
